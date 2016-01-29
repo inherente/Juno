@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>a report here</title>
+<!-- todo.xhtml -->
+</h:head>
+<body>
+    <h1>Integration Controller</h1>
+    <h4></h4>
+    <br />
+    <hr />
+    <p>H1: Report App.</p>
+    <h:form id="forma">
+        <hr />
+        <h:commandButton value="Home" type="submit" action="#{Controller.home}" />
+        <hr />
+
+        <p:confirmDialog message="¿Are you Sure about changing the Job Status?"  
+            showEffect="fade" hideEffect="fade"  
+            header="Initiating Update process" severity="alert" widgetVar="confirmation">
+            <p:commandButton value="Yes" oncomplete="confirmation.hide()" action="#{ReportController.diferencia}" update="forma">
+            </p:commandButton>
+            <p:commandButton value="No" onclick="confirmation.hide()" type="button" />
+        </p:confirmDialog>  
+
+	   	<p:dataTable id="txnCatalog" selection="#{ReportController.reportSelected}" rowKey="#{book.id}" selectionMode="single" rowStyleClass="#{book.status eq 'N' ? 'order-table-active-row' : 'order-table-inactive-row' }" value="#{ReportController.report}" var="book" scrollable="true" scrollHeight="120">
+	   	    <p:column>
+	   	    <f:facet name="header">Order No</f:facet>
+	        <h:link value="#{book.id}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">Activity Name</f:facet>
+	        <h:link value="#{book.name}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">State</f:facet>
+	        <h:link value="#{book.status}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <!-- f:facet name="header" -->
+	        <f:facet name="footer">
+	        <p:commandButton value="Go" update=":#{p:component('forma')}" action="#{ReportController.defaulto}" />
+	        </f:facet>
+	    </p:dataTable>
+        <br />
+        
+        <hr/>     
+	   	<p:dataTable id="dynCatalog" rowStyleClass="#{book.status eq 'N' ? 'order-table-active-row' : 'order-table-inactive-row' }" value="#{ReportController.rowReport}" var="book" scrollable="true" scrollHeight="240">
+	   	    <p:columns value="#{ReportController.column}" var="column">
+	   	    <f:facet name="header">
+	   	        <h:outputText value="#{column.header}" />
+	   	    </f:facet>#{book[column.property]}
+	        </p:columns>
+	    </p:dataTable>
+    </h:form>
+    <hr />
+
+</body>
+</html>

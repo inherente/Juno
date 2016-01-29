@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>put any thing here</title>
+<!-- memeber.html -->
+</head>
+<body>
+    <h1 align='center'>Integration Controller</h1>
+    <p align='center'>H1: Sign Up (create new member)</p>
+    <br />
+    <hr />
+    <h:form align="center" id="forma">
+        <br />
+        <table align="center" border="1">
+            <tr>
+                <td>
+                    <table>
+                        <thead></thead>
+                        <tr><td><h:inputText id="nameU" value="#{Controller.nameU}">name</h:inputText></td></tr>
+                        <tr><td><h:inputText id="rol" value="#{Controller.rol}">rol</h:inputText></td></tr>
+                        <tr><td><h:commandButton value="Go" type="submit" action="#{Controller.logon}" /><h:commandButton value="Cancel" type="submit" action="#{Controller.logout}" /><h:commandButton value="Delete" type="submit" action="#{Controller.delu}" /></td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br />
+        
+        <!-- h:commandButton id="triggerButton" value="go" -->
+    </h:form>
+    <hr />
+
+</body>
+</html>

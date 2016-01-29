@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <h:outputStylesheet library="css" name="fancy.css" />
+    <link type="text/css" rel="stylesheet" href="StyleSheet/normal.css" />
+    <!-- DashBoard -->
+    <title>DashBoard</title>
+</h:head>
+<body>
+    <h1 >Integration Controller</h1>
+    <h4></h4>
+    <br />
+    <hr />
+    <p>Welcome </p>
+    <h:form id="formol">
+
+        <hr/> 
+        <h:commandButton value="logOut" type="submit" action="#{Controller.logout}" />
+        <h:commandButton value="Job" type="submit" action="#{Controller.control}" />
+        <h:commandButton value="Overview" type="submit" action="#{Controller.chart}" />
+        <h:commandButton value="ToDo" type="submit" action = "#{Controller.todo}" />
+        <h:commandButton value="Reporte" type="submit" action="#{Controller.reporte}" />
+
+        <p:confirmDialog message="¿Are you Sure about changing the Job Status?"  
+            showEffect="fade" hideEffect="fade"  
+            header="Initiating Update process" severity="alert" widgetVar="confirmation">
+            <p:commandButton value="Yes" oncomplete="confirmation.hide()" action="#{Controller.change}" update="formol">
+            </p:commandButton>
+            <p:commandButton value="No" onclick="confirmation.hide()" type="button" />
+        </p:confirmDialog>  
+        <h:outputLabel styleClass="titled-text">
+            <!-- h:outputText id="addressLabel" value="User Home Address" -->
+        </h:outputLabel>
+        <!-- p:dataTable id="txnCatalog" value="#{Controller.bookData}" var="book" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row" -->
+	    <hr/>
+
+	   	<br/>
+    </h:form>
+    <br />
+    <h:panelGroup layout="block" id="container" >
+        <h:outputText value="" />
+    </h:panelGroup>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <h:outputStylesheet library="css" name="fancy.css" />
+    <link type="text/css" rel="stylesheet" href="StyleSheet/normal.css" />
+    <!-- job -->
+
+</h:head>
+<body>
+    <h1 >Integration Controller</h1>
+    <h4></h4>
+    <br />
+    <hr />
+    <p>Job Control</p>
+
+    <h:form id="formol">
+        <hr />
+        <h:commandButton value="Home" type="submit" action="#{Controller.home}" />
+
+        <p:confirmDialog message="¿Are you Sure about changing the Job Status?"  
+            showEffect="fade" hideEffect="fade"  
+            header="Initiating Update process" severity="alert" widgetVar="confirmation">
+            <p:commandButton value="Yes" oncomplete="confirmation.hide()" action="#{Controller.change}" update="formol">
+            </p:commandButton>
+            <p:commandButton value="No" onclick="confirmation.hide()" type="button" />
+        </p:confirmDialog>  
+        <h:outputLabel styleClass="titled-text">
+            <!-- h:outputText id="addressLabel" value="User Home Address" -->
+        </h:outputLabel>
+        <!-- p:dataTable id="txnCatalog" value="#{Controller.bookData}" var="book" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row" -->
+	    <hr/>
+	    <p:outputLabel>Replicacion (V3-Stage)</p:outputLabel>
+	    <hr/>
+ 
+	   	<p:dataTable id="txnCatalog" rowStyleClass="#{book.status eq 'N' ? 'order-table-active-row' : 'order-table-inactive-row' }" value="#{Controller.bookData}" var="book" scrollable="true" scrollHeight="240">
+	   	    <p:column>
+	   	    <f:facet name="header">Order No</f:facet>
+	        <h:link value="#{book.id}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">Product Name</f:facet>
+	        <h:link value="#{book.formalName}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">Broken</f:facet>
+	        <h:link value="#{book.status}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">Activate</f:facet>
+	   	    <!-- p:commandLink value="Edit" onClick="confirmation.show();return false;" type="button"-->
+	   	    <p:commandLink value="Edit" oncomplete="confirmation.show();" type="button">
+	   	        <f:setPropertyActionListener target="#{Controller.action}" value="#{book.id}" />
+	   	        <f:ajax immediate="true" render=":formol:txnCatalog"/>
+	   	    </p:commandLink>
+	   	    <!-- h:commandLink onClick="return confirm('¿Do you really what to change the Broken status?');" value="Edita" -->
+	   	    <!-- h:commandButton action="#{Controller.change}" onClick="return confirm('¿Do you really what to change the Broken status?');" value="Edita" -->
+	        <!-- h:link value="#{book.formalName}" outcome="book" -->
+	        </p:column>
+	    </p:dataTable>
+
+	    <hr/>
+	    <p:outputLabel>Generacion (XML)</p:outputLabel>
+	    <hr/>
+ 
+	   	<p:dataTable id="txnOutCatalog" rowStyleClass="#{book.status eq 'N' ? 'order-table-active-row' : 'order-table-inactive-row' }" value="#{Controller.bookOutData}" var="book" scrollable="true" scrollHeight="240">
+	   	    <p:column>
+	   	    <f:facet name="header">Order No</f:facet>
+	        <h:link value="#{book.id}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">Product Name</f:facet>
+	        <h:link value="#{book.formalName}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">Broken</f:facet>
+	        <h:link value="#{book.status}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">Activate</f:facet>
+	   	    <!-- p:commandLink value="Edit" onClick="confirmation.show();return false;" type="button"-->
+	   	    <p:commandLink value="Edit" oncomplete="confirmation.show();" type="button">
+	   	        <f:setPropertyActionListener target="#{Controller.action}" value="#{book.id}" />
+	   	        <f:ajax immediate="true" render=":formol:txnOutCatalog"/>
+	   	    </p:commandLink>
+	        </p:column>
+	    </p:dataTable>
+	    <hr/>
+	    <p:outputLabel>Send (V3T3 To PI)</p:outputLabel>
+	    <hr/>
+ 
+	   	<p:dataTable id="txnPICatalog" rowStyleClass="#{book.status eq 'N' ? 'order-table-active-row' : 'order-table-inactive-row' }" value="#{Controller.bookPIData}" var="book" scrollable="true" scrollHeight="240">
+	   	    <p:column>
+	   	    <f:facet name="header">Order No</f:facet>
+	        <h:link value="#{book.id}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">Product Name</f:facet>
+	        <h:link value="#{book.formalName}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">Broken</f:facet>
+	        <h:link value="#{book.status}" outcome="book">
+	            <f:param name="id" value="#{book.id}" />
+	        </h:link>
+	        </p:column>
+	   	    <p:column>
+	   	    <f:facet name="header">Activate</f:facet>
+	   	    <p:commandLink value="Edit" oncomplete="confirmation.show();" type="button">
+	   	        <f:setPropertyActionListener target="#{Controller.action}" value="#{book.id}" />
+	   	        <f:ajax immediate="true" render=":formol:txnPICatalog"/>
+	   	    </p:commandLink>
+	        </p:column>
+	    </p:dataTable>
+
+	   	<br/>
+    </h:form>
+    <br />
+    <h:panelGroup layout="block" id="container" >
+        <h:outputText value="" />
+    </h:panelGroup>
+</body>
+</html>

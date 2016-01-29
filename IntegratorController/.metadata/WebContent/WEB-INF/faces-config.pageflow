@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14241899402160" configfile="/IntegratorController/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="Dashboard.xhtml" x="312" y="204" id="pf14241958772207" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" outlinks="pf14247033779780 pf14247328122671 pf14259265657380 pf14259321449776 pf14259375798480 pf14259375798481 pf14274042452810" inlinks="pf14242823860600 pf14247033779780 pf14247328122671 pf14259337373460 pf14259375798482 pf14259375798483 pf14274042452811" path="/Dashboard.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="326" y="48" id="pf14242823860601" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf14242823860600 pf14259194060770" inlinks="pf14259215400202 pf14259265657380" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="member.xhtml" x="624" y="60" id="pf14259194060781" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf14259215400202" inlinks="pf14259194060770" path="/member.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="job.xhtml" x="332" y="384" id="pf14259321449777" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf14259337373460" inlinks="pf14259321449776" path="/job.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="chart.xhtml" x="432" y="384" id="pf14259375798484" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf14259375798482" inlinks="pf14259375798480" path="/chart.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="todo.xhtml" x="60" y="204" id="pf14259375798485" referenceLink="//@navigationRule.12/@navigationCase.0/@toViewId|" outlinks="pf14259375798483 pf14267183366360" inlinks="pf14259375798481 pf14267183366360" path="/todo.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="reporte.xhtml" x="228" y="384" id="pf14274042452822" referenceLink="//@navigationRule.14/@fromViewId|" outlinks="pf14274042452811 pf14274930127940" inlinks="pf14274042452810 pf14274930127940" path="/reporte.xhtml"/>
+  <links id="pf14242823860600" target="pf14241958772207" source="pf14242823860601" outcome="success" fromaction="#{Controller.login}"/>
+  <links id="pf14247033779780" target="pf14241958772207" source="pf14241958772207" outcome="success" fromaction="#{Controller.anything}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf14247328122671" target="pf14241958772207" source="pf14241958772207" outcome="success" fromaction="#{Controller.change}">
+    <bendPoints d1Height="-66" d2Height="-66"/>
+    <bendPoints d1Width="-94" d1Height="-66" d2Width="-94" d2Height="-66"/>
+    <bendPoints d1Width="-94" d2Width="-94"/>
+  </links>
+  <links id="pf14259194060770" target="pf14259194060781" source="pf14242823860601" outcome="success" fromaction="#{Controller.member}"/>
+  <links id="pf14259215400202" target="pf14242823860601" source="pf14259194060781" outcome="success" fromaction="#{Controller.logout}"/>
+  <links id="pf14259265657380" target="pf14242823860601" source="pf14241958772207" outcome="success" fromaction="#{Controller.logout}"/>
+  <links id="pf14259321449776" target="pf14259321449777" source="pf14241958772207" outcome="success" fromaction="#{Controller.control}"/>
+  <links id="pf14259337373460" target="pf14241958772207" source="pf14259321449777" outcome="success" fromaction="#{Controller.home}"/>
+  <links id="pf14259375798480" target="pf14259375798484" source="pf14241958772207" outcome="success" fromaction="#{Controller.chart}"/>
+  <links id="pf14259375798482" target="pf14241958772207" source="pf14259375798484" outcome="success" fromaction="#{Controller.home}"/>
+  <links id="pf14259375798481" target="pf14259375798485" source="pf14241958772207" outcome="success" fromaction="#{Controller.todo}"/>
+  <links id="pf14259375798483" target="pf14241958772207" source="pf14259375798485" outcome="success" fromaction="#{Controller.home}"/>
+  <links id="pf14267183366360" target="pf14259375798485" source="pf14259375798485" outcome="success" fromaction="#{ActivityController.activitie}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf14274042452810" target="pf14274042452822" source="pf14241958772207" outcome="success" fromaction="#{Controller.reporte}"/>
+  <links id="pf14274042452811" target="pf14241958772207" source="pf14274042452822" outcome="success" fromaction="#{Controller.home}"/>
+  <links id="pf14274930127940" target="pf14274042452822" source="pf14274042452822" outcome="success" fromaction="#{ReportController.report}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+</pageflow:Pageflow>

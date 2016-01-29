@@ -1,0 +1,36 @@
+@CHARSET "ISO-8859-1";
+.order-table {   
+	border-collapse:collapse;
+}
+ 
+.order-table-header {
+ /*	text-align:center; */
+	background:none repeat scroll 0 0 #3E3E3E;
+	border-bottom:1px solid #BBBBBB;
+	padding:10px;
+}
+ 
+.order-table-odd-row {
+ /*	text-align:center; */	
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+ 
+.order-table-even-row {
+ /*	text-align:center; */
+	background:none repeat scroll 0 0 #999999;
+	border-top:1px solid #BBBBBB;
+}
+
+.order-table-active-row {
+ /*	text-align:center; */
+	background:#62d75f;
+	border-top:1px solid #BBBBBB;
+}
+
+.order-table-inactive-row {
+ /*	text-align:center; */
+	background:#feff53;
+	border-top:1px solid #BBBBBB;
+}
+

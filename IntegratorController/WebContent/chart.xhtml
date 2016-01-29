@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>Chart title here</title>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="util.js"></script>
+    <script type="text/javascript">google.load('visualization', '1', {packages: ['corechart']});</script>
+    <script type="text/javascript">google.load('visualizationT3Out', '1', {packages: ['corechart']});</script>
+    <!-- chart -->
+    <script>
+        setInterval(
+        	function () {
+        		document.getElementById('formo:idOfButton').click();
+        	}, 900000
+        );
+    </script>
+    <script type="text/javascript">
+
+        function drawVisualizationGroup() {
+         //	drawVisualization();
+        	drawVisualizationMFlowt();
+        	
+        }
+
+        function drawVisualizationMFlowt() {
+         // To be able to get a value off of an element , it can not be h:outPutText. Use instead inputHidden
+
+            populateMFlowData (
+            	document.getElementById('forma:MessageDocumentType').value,
+            	document.getElementById('forma:deltaA').value, 
+           		document.getElementById('forma:deltaB').value,
+           		document.getElementById('forma:deltaC').value, 
+           		document.getElementById('forma:deltaD').value,
+           		document.getElementById('forma:deltaE').value,
+           		document.getElementById('forma:deltaF').value,
+           		document.getElementById('forma:MessageColumnName').value);
+         // alert ("data management done");
+
+         // Create and draw the visualization.
+            new google.visualization.LineChart(document.getElementById('visualizationMFlow')).
+                draw(messageFlowData,
+                   	{curveType: "function", width: 1000, height: 400,vAxis: {maxValue: 10}}
+                ); // {title:"Yearly Coffee Consumption by Country", width:600, height:400, vAxis: {title: "Year"},hAxis: {title: "Cups"}} 
+        }
+
+    </script>
+    <script type="text/javascript">google.setOnLoadCallback(drawVisualizationGroup);</script>
+
+</head>
+<body>
+    <h1 >Integration Controller</h1>
+    <h4></h4>
+    <br />
+    <hr />
+    <p>Welcome </p>
+    <h:form id="formo">
+        <hr/> 
+        <h:inputHidden id="deltaA" value="#{Controller.basicChart.deltaA}" />
+        <h:inputHidden id="deltaB" value="#{Controller.basicChart.deltaB}" />
+        <h:inputHidden id="deltaC" value="#{Controller.basicChart.deltaC}" />
+        <h:inputHidden id="deltaD" value="#{Controller.basicChart.deltaD}" />
+        <h:inputHidden id="deltaE" value="#{Controller.basicChart.deltaE}" />
+        <h:inputHidden id="deltaF" value="#{Controller.basicChart.deltaF}" />        
+        <h:inputHidden id="MessageDocumentType" value="#{Controller.basicChart.messageDocumentType}" />
+        <h:inputHidden id="MessageColumnName" value="#{Controller.basicChart.messageColumnName}" />
+
+        <h:commandButton value="Home" type="submit" action="#{Controller.home}" />
+        <!-- h:commandButton value="Job" type="submit" action="#{Controller.output}" -->
+        <hr/>
+	    <p:outputLabel>Grahp (V3-Stage)</p:outputLabel>
+	    <hr/>
+	    <div id="visualization" style="width: 600px; height: 400px;"></div>
+	    <hr />
+	    
+	    <h:inputText id="inputName" value="#{Controller.nameU}"></h:inputText>
+	    <h:commandButton id="idOfButton" value="Welcome Me">
+	        <f:ajax execute="inputName" render="outputin" />
+	    </h:commandButton>
+	    <h:outputText id="outputin" value="#{Controller.output}" />
+
+    </h:form>
+
+</body>
+</html>
